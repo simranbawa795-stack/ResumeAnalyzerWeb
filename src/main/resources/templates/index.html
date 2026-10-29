@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <title>AI Resume Analyzer</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f0f2f5; margin: 0; padding: 40px; display: flex; justify-content: center; }
+        .container { max-width: 600px; width: 100%; background: white; padding: 40px; border-radius: 12px; box-shadow: 0px 4px 20px rgba(0,0,0,0.08); text-align: center; }
+        h2 { color: #1a73e8; margin-bottom: 10px; }
+        .upload-box { border: 2px dashed #1a73e8; padding: 30px; border-radius: 8px; background: #f8f9fa; margin: 25px 0; }
+        button { background-color: #1a73e8; color: white; border: none; padding: 12px 30px; font-size: 16px; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%; }
+        .report { margin-top: 30px; text-align: left; background: #f1f3f4; padding: 25px; border-radius: 8px; border-left: 5px solid #1a73e8; }
+        pre { white-space: pre-wrap; font-family: inherit; color: #333; line-height: 1.6; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>AI Resume Analyzer</h2>
+    <p>Upload your PDF resume to receive an instant analysis report</p>
+    <div class="upload-box">
+        <form th:action="@{/analyze}" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".pdf" required><br><br>
+            <button type="submit">Analyze Resume</button>
+        </form>
+    </div>
+    <div class="report" th:if="${report}">
+        <h3 style="color: #1a73e8; margin-top: 0;">📊 Analysis Result:</h3>
+        <pre th:text="${report}"></pre>
+    </div>
+</div>
+</body>
+</html>
+
